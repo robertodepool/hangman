@@ -3,15 +3,18 @@ Hangman is a classic game in which a player thinks of a word and the other playe
 
 This is an implementation of the Hangman game, where the computer thinks of a word and the user tries to guess it. 
 
-Project Title
-Table of Contents, if the README file is long
-A description of the project: what it does, the aim of the project, and what you learned
-Installation instructions
-Usage instructions
-File structure of the project
-License information
+## Usage Instructions
+The game is ready to be played by running the function play_hame with the argument word_list are what is run to play it. This piece of code is located on milestone_5.py
 
-Phases of project detailed in milestones 
+If the player would like to change the list of words to be guessed, simply change the word_list on line 122. 
+
+There are docstrings and explanations of the code throughout the code if you would like to better understand or modify the code. 
+
+
+
+## Phases of project detailed in milestones 
+This is a diary of the stages I had constructing this piece of code.
+
 In Milestone 1
 - We simply set up the Github, downloading the project to my local computer. 
 
@@ -42,3 +45,7 @@ In Milestone 4
 - The code was pushed to Github
 - Conclusion: I have previously done a lot of the tasks for this milestone as I organised my code in earlier milestone to achieve this. However, a few tweaks had to be done, plus the added features mentioned before. 
 
+In Milestone 5
+- The play_game function was created using the Hangman class in a variable. 
+- A while True loop was created to discern whether the player won, lost or needed to put in another input. 
+- Conclusion: at this final stage the features of the play_game functions were not too dificult to set up, however, some tweaking with breaks and some placing throughout the code needed to be changed to achieve the final product. 
