@@ -1,4 +1,5 @@
-import random #Module used with the tool randomise the word from our list
+import random
+
 
 class Hangman: 
     '''
@@ -36,17 +37,17 @@ class Hangman:
         Asks the user for a letter.
     '''
     def __init__(self, word_list, num_lives=5):
-       self.word = random.choice(word_list) #Randomly selects a word from the word_list
-       self.word_guessed = ['_' for char in self.word] #Iterates over the characters in the word to be guessed and places a '_'
-       self.num_letters = len(set(self.word)) #Uses set to only get the unique letters 
+       self.word = random.choice(word_list) 
+       self.word_guessed = ['_' for char in self.word] 
+       self.num_letters = len(set(self.word))
        self.num_lives = num_lives
        self.word_list = word_list
-       self.list_of_guesses = [] #List to be filled with the guesses 
+       self.list_of_guesses = []
        
-       print(f"The mistery word has {self.num_letters} characters") #Print that shows the player the number of characters
-       print(f"{self.word_guessed}") #Print that shows the player the concealed word e.g if the word is pear ['_', '_', '_', '_']
+       print(f"The mistery word has {self.num_letters} characters")
+       print(f"{self.word_guessed}") 
 
-    def check_guess(self, guess): #Checks whether the guess is within the word or not, substracts from the num_letters or num_lives accordingly
+    def check_guess(self, guess):
         '''
         Checks if the letter is in the word.
         If it is, it replaces the '_' in the word_guessed list with the letter.
@@ -59,20 +60,20 @@ class Hangman:
             The letter to be checked
 
         '''
-        guess = guess.lower() #Uses lower() to lowercase guess and word for no capitalisation issue
+        guess = guess.lower() 
         word = self.word.lower()
-        if guess in word: #Check whether the letter is in the word
-            for index, letter in enumerate(word): #Uses for loop enumerate to index each letter of the word
+        if guess in word: 
+            for index, letter in enumerate(word):
                 if letter == guess:
                     self.word_guessed[index] = guess  
             print(f"Good guess! {guess} is in the word.")
-            self.num_letters -= 1 #Substracts 1 from the num_letters when correct
+            self.num_letters -= 1 
         else: 
             print(f"Sorry, {guess} is not in the word. Try again.")
-            self.num_lives -= 1 #Substracts 1 from num_lives when incorrect
+            self.num_lives -= 1
             print(f"You have {self.num_lives} left")
 
-    def ask_for_input(self): #Makes you the code gets the correct input from the player: single character, alphabetical and not already guessed.
+    def ask_for_input(self):
         '''
         Asks the user for a letter and checks two things:
         1. If the letter has already been tried
@@ -81,17 +82,17 @@ class Hangman:
         '''
         while True:
             guess = input("Enter a single letter: ").lower()
-            if guess.isalpha() and len(guess) != 1: #Uses isaplha() to see whether the guess is within the alphabet (not a number or character) and that the length is 1
+            if guess.isalpha() and len(guess) != 1: 
                 print("Invalid letter. Please, enter a single alphabetical character.")
-            elif guess in self.list_of_guesses: #Checks whether the guess has been already tried
+            elif guess in self.list_of_guesses: 
                 print("You already tried that letter!")
             else:
-                self.check_guess(guess) #If the input is correct check_guess method is called
-                self.list_of_guesses.append(guess) #Guess is added to the list of guesses
+                self.check_guess(guess)
+                self.list_of_guesses.append(guess) 
             break
     
 
-def play_game(word_list): #The game function 
+def play_game(word_list): 
         '''
         The function that the player uses to play the game
         Variables:
@@ -107,8 +108,9 @@ def play_game(word_list): #The game function
         3. If the num_letters are greater than 0 the loop keeps going (calls ask_for_input) until either of the two other conditions are satified 
         '''
         num_lives = 5
-        game = Hangman(word_list, num_lives) #Instance of the class Hangman with word_list and num_lives arguments
+        game = Hangman(word_list, num_lives)
         while True:
+            print(f"\n{' '.join(game.word_guessed)}")  # Print the current state of the word
             if game.num_lives == 0:
                 print("You lost!")
                 break
@@ -119,7 +121,6 @@ def play_game(word_list): #The game function
                 game.ask_for_input()
 
 
-word_list = ["apple", "papaya", "mango", "blueberry", "banana"] #word_list created with my favourite fruits 
-word = random.choice(word_list) #randomises a word from the word_list
-
-play_game(word_list) #Calls play_game to play he game
+if __name__ == "__main__":
+    word_list = ["apple", "papaya", "mango", "blueberry", "banana"]  # word_list created with my favourite fruits 
+    play_game(word_list)  # Calls play_game to play the game
